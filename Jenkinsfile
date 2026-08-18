@@ -9,6 +9,18 @@ environment{
 
 stages{
 
+stage("Checkout"){
+
+        steps{
+            checkout scm 
+            echo "checkout successful"
+            echo "Testing from github..."
+        }
+
+}
+
+
+
 stage("Welcome stage")
 {
     steps{
