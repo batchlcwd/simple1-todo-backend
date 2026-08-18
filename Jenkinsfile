@@ -19,24 +19,53 @@ stage("Checkout"){
 
 }
 
+stage("Test"){
 
+steps{
+    sh '''
+    chmod +x ./mvnw
+    ./mvnw test
 
-stage("Welcome stage")
-{
-    steps{
-        sh '''
-
-        echo "Hello, Pipeline for ${PROJECT_NAME} started..."
-
-        '''
-
-        sh '''
-
-            echo "Build Numer is "${BUILD_NUMBER}""
-
-        '''
-    }
+    '''
 }
+
+}
+
+
+stage("Build"){
+
+steps{
+    sh '''
+    
+    ./mvnw clean package -DskipTests
+
+    '''
+}
+
+}
+
+
+
+stage("Docker Build"){
+
+steps{
+    sh '''
+    docker image prune  -af
+    
+    docker build \
+    -t ${DOCKER_IMAGE}:${DOCKER_TAG} .
+
+    
+    docker images
+
+    '''
+}
+
+}
+
+
+
+
 
 
 }
