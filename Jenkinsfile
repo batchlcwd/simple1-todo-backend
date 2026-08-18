@@ -128,13 +128,13 @@ steps{
             ssh $EC2_USER@$EC2_HOST "
                 docker rm -f $CONTAINER_NAME || true
 
-                docker pull $IMAGE_NAME:$IMAGE_TAG
+                docker pull $DOCKER_IMAGE:$DOCKER_TAG
 
                 docker run -d \
                     --name $CONTAINER_NAME \
                     -p $APP_PORT \
                     --restart unless-stopped \
-                    $IMAGE_NAME:$IMAGE_TAG
+                    $DOCKER_IMAGE:$DOCKER_TAG
 
                 docker image prune -f
             "
