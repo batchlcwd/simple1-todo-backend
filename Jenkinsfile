@@ -24,8 +24,17 @@ stage("Checkout"){
 stage("Welcome stage")
 {
     steps{
-        echo '''Hello, Pipeline for "${PROJECT_NAME}" started...'''
-        echo '''Build Numer is "${BUILD_NUMBER}"'''
+        sh '''
+
+        echo "Hello, Pipeline for ${PROJECT_NAME} started..."
+
+        '''
+
+        sh '''
+
+            echo "Build Numer is "${BUILD_NUMBER}""
+
+        '''
     }
 }
 
