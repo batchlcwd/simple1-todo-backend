@@ -79,7 +79,9 @@ steps{
 
         sh '''      
 
-            echo "$DOCKERHUB_PASSWORD | docker login -u $DOCKERHUB_USERNAME --password-stdin"
+            echo "$DOCKERHUB_PASSWORD" | docker login \
+            -u $DOCKERHUB_USERNAME \
+            --password-stdin
 
             docker push ${DOCKER_IMAGE}:${DOCKER_TAG}
 
