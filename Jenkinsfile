@@ -126,12 +126,12 @@ steps{
             ssh-keyscan -H "$EC2_HOST" >> ~/.ssh/known_hosts
 
             ssh $EC2_USER@$EC2_HOST "
-                docker rm -f $CONTAINER_NAME || true
+                docker rm -f $DOCKER_CONTAINER || true
 
                 docker pull $DOCKER_IMAGE:$DOCKER_TAG
 
                 docker run -d \
-                    --name $CONTAINER_NAME \
+                    --name $DOCKER_CONTAINER \
                     -p $APP_PORT \
                     --restart unless-stopped \
                     $DOCKER_IMAGE:$DOCKER_TAG
